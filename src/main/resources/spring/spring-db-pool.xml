@@ -1,0 +1,37 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+        xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+        xmlns:tx="http://www.springframework.org/schema/tx"        
+        xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd
+                http://www.springframework.org/schema/tx http://www.springframework.org/schema/tx/spring-tx.xsd                
+	">
+	<!-- <tx:annotation-driven transaction-manager="oracTnxManager"/>
+		This causing the issue for Consider renaming one of the beans or enabling overriding by setting spring.main.allow-bean-definition-overriding=true		
+	--> 
+	<!-- <bean id="oracTnxManager" class="org.springframework.jdbc.datasource.DataSourceTransactionManager">
+		<property name="dataSource" ref="oracDataSource"/>
+	</bean> -->
+	<bean id="oracDataSource" class="org.apache.commons.dbcp2.BasicDataSource">
+		<property name="driverClassName" value="oracle.jdbc.driver.OracleDriver"/>
+		<property name="url" value="${oracle.db.connection.url}"/>
+		<property name="username" value="${oracle.db.connection.username}"/>
+		<property name="password" value="${oracle.db.connection.password}"/>
+		<property name="defaultTransactionIsolation" value="2"/>
+		<property name="maxWaitMillis" value="50000"/>
+		<property name="maxIdle" value="5"/>
+		<property name="minIdle" value="3"/>
+		<property name="maxTotal" value="#{systemEnvironment['ORACLE_DB_MAX_POOL_SIZE'] != null?systemEnvironment['ORACLE_DB_MAX_POOL_SIZE'] : 10}"/>	
+	</bean>
+	
+	<!-- <bean id="oracSqlSess" class="org.mybatis.spring.SqlSessionTemplate">
+		<constructor-arg index="0" ref="oracSqlSessFactory"></constructor-arg>
+	</bean> -->
+	<bean id="oracSqlSessFactory" class="org.mybatis.spring.SqlSessionFactoryBean">
+		<property name="dataSource" ref="oracDataSource"/>
+		<!-- <property name="mapperLocations" value="classpath:mapper/cust_sql_oracle.xml"/>	 -->	
+	</bean>
+	 <bean id="oracMapper" class="org.mybatis.spring.mapper.MapperFactoryBean">
+		<property name="mapperInterface" value="com.sri.scala.test.root.dataAccess.mapper.DataAccessMapperAnnotation"/>
+		<property name="sqlSessionFactory" ref="oracSqlSessFactory"/>	
+	</bean>
+</beans>
