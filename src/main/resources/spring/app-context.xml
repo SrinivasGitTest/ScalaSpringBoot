@@ -21,7 +21,7 @@
         </bean>
         <context:property-placeholder location="classpath*:#{systemEnvironment['Env']?:'local'}/jdbc.properties,
 												classpath*:#{systemEnvironment['Env']?:'local'}/spring.properties,
-												classpath*:spring/application.properties" ignore-unresolvable="false"/>
+												classpath*:spring/application.properties" ignore-unresolvable="true"/>
 
         <import resource="classpath:spring/spring-db-pool.xml"/>
         
