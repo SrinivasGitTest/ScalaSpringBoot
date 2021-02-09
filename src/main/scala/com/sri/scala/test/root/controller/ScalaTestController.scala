@@ -11,11 +11,9 @@ import com.sri.scala.test.root.service.ScalaTestServiceImpl
 
 import io.swagger.annotations.ApiParam
 import javax.servlet.http.HttpServletRequest
-import org.springframework.context.annotation.ComponentScan
 
 @RestController
 @RequestMapping(Array("/sri/scala/test/sample"))
-@ComponentScan(basePackages = Array("com.sri.scala.test.root.controller"))
 class ScalaTestController {
   
   var serviceImpl : ScalaTestServiceImpl = new ScalaTestServiceImpl();
@@ -29,7 +27,7 @@ class ScalaTestController {
 											request : HttpServletRequest ) : Object = {
       println("Testing scala application");
     
-      //return serviceImpl.getUserReviewData(reviewCount, reviewDate);
+      return serviceImpl.getUserReviewData(reviewCount, reviewDate);
       return null;
   }
   
