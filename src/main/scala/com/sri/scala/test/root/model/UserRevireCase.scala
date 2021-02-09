@@ -1,6 +1,8 @@
 package com.sri.scala.test.root.model
 
 import java.util.Date
+import scala.beans.BeanProperty
 
-case class UserReviewCase (userId : String, userActDt : Date, reviewerName : String, reviewCount : Integer, reviewUseCount : Integer, 
-                    reviewFunnyCount : Integer, refUserId : String, reviewFansCount : Integer, avgStartCount : Float);
+class UserReviewCase (@BeanProperty var userId : String, @BeanProperty var userActDt : Date, @BeanProperty var reviewerName : String, @BeanProperty var reviewCount : Integer, 
+                          @BeanProperty var reviewUseCount : Integer, @BeanProperty var reviewFunnyCount : Integer, @BeanProperty var refUserId : String, 
+                          @BeanProperty var reviewFansCount : Integer, @BeanProperty var avgStartCount : Float);

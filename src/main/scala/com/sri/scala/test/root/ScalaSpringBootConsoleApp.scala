@@ -10,17 +10,18 @@ import org.mybatis.spring.mapper.MapperFactoryBean
 import com.sri.scala.test.root.dataAccess.mapper.DataAccessMapperAnnotation
 import com.sri.scala.test.root.service.ScalaTestServiceImpl
 import scala.collection.mutable.ListBuffer
+import com.sri.scala.test.root.service.ScalaTestService
 
 object ScalaSpringBootConsoleApp extends App  {
   
   TimeZone.setDefault(TimeZone.getTimeZone("America/New_York"));
 		//SpringApplication.run(classOf[SpringBootScala]);
     val timeMilliSec : Long = System.currentTimeMillis();
-    val test : ScalaTestServiceImpl = new ScalaTestServiceImpl();
-    var listData = test.getUserReviewData(100, null)
+    val test : ScalaTestService = new ScalaTestServiceImpl();
+    var listData = test.getUserReviewData(500, null)
 		System.out.println("Deployment Completed===:"+listData.size);
     println("Processing TIme==:"+(System.currentTimeMillis() - timeMilliSec))
-    println(listData)
+    listData.foreach(data => println(data.userId))
     println("Processing TIme==:"+(System.currentTimeMillis() - timeMilliSec))
   	
 }
