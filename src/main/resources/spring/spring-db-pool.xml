@@ -28,7 +28,7 @@
 	</bean> -->
 	<bean id="oracSqlSessFactory" class="org.mybatis.spring.SqlSessionFactoryBean">
 		<property name="dataSource" ref="oracDataSource"/>
-		<property name="mapperLocations" value="classpath:mapper/cust_sql_oracle.xml"/>		
+		<!-- <property name="mapperLocations" value="classpath:mapper/cust_sql_oracle.xml"/>	 -->	
 	</bean>
 	 <bean id="oracMapper" class="org.mybatis.spring.mapper.MapperFactoryBean">
 		<property name="mapperInterface" value="com.sri.scala.test.root.dataAccess.mapper.DataAccessMapperAnnotation"/>
