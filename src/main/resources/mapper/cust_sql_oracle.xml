@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.sri.scala.test.root.dataAccess.mapper.DataAccessMapperAnnotation">
+	<select id="getuserReviewData" resultType="com.sri.scala.test.root.model.UserReviewCase">
+		SELECT USERID userId, USER_ACTV_DATE userActDt, REVIEWR_NAME reviewerName, REVIEW_COUNT reviewCount, REVIEW_USEFUL reviewUseCount, 
+             REVIEW_FUNNY reviewFunnyCount, REF_USERID refUserId, REVIEW_FANS reviewFansCount, AVG_STAR_COUNT avgStartCount
+		FROM user_review
+		WHERE REVIEW_COUNT > #{reviewCt}
+		<if test="reviewDate != null">
+			AND CAST(USER_ACTV_DATE AS DATE) >= #{reviewDate}
+		</if>
+	</select>
+</mapper>
