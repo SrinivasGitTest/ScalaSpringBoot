@@ -20,5 +20,7 @@ object ScalaSpringBootConsoleApp extends App  {
     var listData = test.getUserReviewData(100, null)
 		System.out.println("Deployment Completed===:"+listData.size);
     println("Processing TIme==:"+(System.currentTimeMillis() - timeMilliSec))
+    println(listData)
+    println("Processing TIme==:"+(System.currentTimeMillis() - timeMilliSec))
   	
 }
